@@ -1,0 +1,13 @@
+"gjrand.hpp" gjrand32
+"jsf.hpp" jsf32
+<random> mt19937 -URNG_TYPE -DRNG_TYPE=std::mt19937
+"pcg_random.hpp" pcg32_fast
+"pcg_random.hpp" pcg32
+"sfc.hpp" sfc32
+"splitmix.hpp" splitmix32
+"xoroshiro.hpp" xoroshiro64plus32
+"xorshift.hpp" xorshift64star32a
+"xoshiro.hpp" xoshiro128plus32
+"xoshiro.hpp" xoshiro128starstar32
+"arc4.hpp" arc4_rand32
+"chacha.hpp" chacha8r

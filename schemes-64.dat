@@ -1,0 +1,13 @@
+"gjrand.hpp" gjrand64
+"jsf.hpp" jsf64
+"lehmer.hpp" mcg128_fast
+"lehmer.hpp" mcg128
+<random> mt19937_64 -URNG_TYPE -DRNG_TYPE=std::mt19937_64
+"pcg_random.hpp" pcg64_fast
+"pcg_random.hpp" pcg64
+"sfc.hpp" sfc64
+"splitmix.hpp" splitmix64
+"xoroshiro.hpp" xoroshiro128plus64
+"xorshift.hpp" xorshift128star64a
+"xoshiro.hpp" xoshiro256plus64
+"xoshiro.hpp" xoshiro256starstar64
