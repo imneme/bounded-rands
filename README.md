@@ -10,4 +10,12 @@ See http://www.pcg-random.org/posts/bounded-rands.html
 Run
 
     sh download-gists.sh
-    sh compile.sh
+    sh gen-makefile.sh
+    make -j 6
+
+## Running all tests
+
+    sh gen-tests.sh
+    make -f Makefile.test -j 3
+    sh gen-summary-tsv.sh
+
