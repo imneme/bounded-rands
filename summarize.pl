@@ -19,11 +19,11 @@ GetOptions ("method"   => \$byMethod,
 foreach my $file (@ARGV) { 
     my $id = $file;
     $id =~ s{\.([^.]+)\.([^.]+)\.([^.]+)\.([^.]+)\.}{
-	($byMethod ? ".$1" : "") . ($byPRNG ? ".$2" : "") .
+	($byPRNG ? ".$1" : "") . ($byMethod ? ".$2" : "") .
         ($byCompiler ? ".$3" : "") . ($bySeed ? ".$4" : "") . "."}e; 
     $id =~ s{.*/}{};
     $id =~ s{\.out}{};
-    open my $fh, "<", $file or die "$!"; 
+    open my $fh, "<", $file or die "Can't open '$file' ($!)"; 
     while (<$fh>) { 
 	chomp; 
 	next unless m{^(.*?) completed \((\S+) seconds\)}; 
