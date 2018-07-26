@@ -386,6 +386,8 @@ int main(int argc, char* argv[])
     rng_t rng_copy = rng;
 #endif
     Timer timer;
+
+    // Large shuffle
     timer.start("Test 1");
     for (uint32_t i = 0xffffffff; i > 0; --i) {
 	uint32_t bval = bounded_rand(rng, i);
@@ -393,10 +395,10 @@ int main(int argc, char* argv[])
 	sum += bval;
     }
     timer.done();
-
     std::cout << "Sum1 = " << sum << "\n";
-    sum = 0;
 
+    // Small shuffle
+    sum = 0;
     timer.start("Test 2");
     for (uint32_t j = 0; j < 0xffff; ++j) {
 	for (uint32_t i = 0x0000ffff; i > 0; --i) {
@@ -406,10 +408,10 @@ int main(int argc, char* argv[])
 	}
     }
     timer.done();
-    
     std::cout << "Sum2 = " << sum << "\n";
-    sum = 0;
     
+    // All-ranges shuffle
+    sum = 0;
     timer.start("Test 3");
     for (uint32_t bit = 1; bit != 0; bit <<= 1) {
 	for (uint32_t i = 0; i < 0x1000000; ++i) {
@@ -422,7 +424,28 @@ int main(int argc, char* argv[])
     timer.done();
     std::cout << "Sum3 = " << sum << "\n";
 
-    
+    // Small constant
+    sum = 0;
+    timer.start("Test 4");
+    for (uint32_t i = 0; i < 0x80000000; ++i) {
+	uint32_t bval = bounded_rand(rng, 52);
+	assert(bval < 52);
+	sum += bval;
+    }
+    timer.done();
+    std::cout << "Sum4 = " << sum << "\n";
+
+    // Large constant
+    sum = 0;
+    timer.start("Test 5");
+    for (uint32_t i = 0; i < 0x80000000; ++i) {
+	uint32_t bval = bounded_rand(rng, uint32_t(-52));
+	assert(bval < uint32_t(-52));
+	sum += bval;
+    }
+    timer.done();
+    std::cout << "Sum5 = " << sum << "\n";
+
 #if RNG_HAS_DISTANCE
     std::cout << rng - rng_copy << " numbers used" << "\n";
 #endif
